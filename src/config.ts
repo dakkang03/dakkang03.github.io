@@ -11,7 +11,7 @@ export const siteConfig = {
   },
   aboutMe:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
+  skills: ["Verilog", "Cadence", "MATLAB", "Python", "AutoCAD"],
   projects: [
     {
       name: "CMOS biosensor",
@@ -24,83 +24,59 @@ export const siteConfig = {
       name: "ASIC DES Processor",
       description:
         "Designed and implemented a complete 64-bit Data Encryption Standard (DES) hardware cipher in Verilog",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
+      link: "https://github.com/seointhenerd/des-project",
       skills: ["RTL", "Cadence Genus/Innovus", "DRC/LVS", "CTS"],
     },
     {
       name: "High Speed Data Acquisition Controller",
       description:
         "This project implements a configurable 16-channel data acquisition controller designed for high-speed sampling applications",
-      link: "https://extensionkit.io/?ref=devportfolio",
+      link: "https://github.com/dakkang03/High-Speed-Data-Acquisition-Controller",
       skills: ["RTL", "Python"],
     },
     {
-      name: "High Speed Data Acquisition Controller",
+      name: "Autonomous Multi-Modal Robot Control",
       description:
-        "This project implements a configurable 16-channel data acquisition controller designed for high-speed sampling applications",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["RTL", "Python"],
+        "This project aims to develop an autonomous driving robot based on multi-sensor fusion",
+      link: "https://github.com/dakkang03/ECE3610-team4-SP25",
+      skills: ["MATLAB", "Arduino","CNN"],
     },
     {
-      name: "High Speed Data Acquisition Controller",
+      name: "DTMF Signal Decoding",
       description:
-        "This project implements a configurable 16-channel data acquisition controller designed for high-speed sampling applications",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["RTL", "Python"],
+        "Developed a scoring process that accurately determines DTMF frequencies and ensures reliable operation in ideal (noise-free) signal conditions",
+      link: "https://github.com/Ajayvarmann/ECE-6530_team-7_Final-project",
+      skills: ["MATLAB", "FIR filter"],
     },
   ],
   experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
+      company: "Biomedical Micro-Nano Systems Lab",
+      title: "Lab Assistant",
+      dateRange: "Aug 2024 - Dec 2025",
       bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
+        "Co-authored 1 peer-reviewed publication on microfluidic bio-impedance sensing",
+        "Led experimental design and data analysis for impedance measurement, improving sensitivity at low frequencies",        
       ],
     },
     {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
+      company: "University of Utah",
+      title: "Teaching Assistant",
+      dateRange: "Feb 2023 - Jun 2025",
       bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
+        "Served as Grading TA for 3 courses and Lab TA for 6 courses, supporting 20+ students per class",
+        "Helped improve selected students’ performance by over 20% through targeted guidance and lab support",
       ],
-    },
-    {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
-      bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
-      ],
-    },
+    }
   ],
   education: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      school: "University of Utah",
+      degree: "Bachelor of Science in Electrical Engineering",
+      dateRange: "2022 - 2025",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
+        "GPA: 3.74/4.0",
       ],
-    },
-    {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
-      achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
-      ],
-    },
+    }
   ],
 };

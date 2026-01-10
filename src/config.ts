@@ -1,38 +1,52 @@
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
+  name: "Dakyung Kang",
   title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
+  description: "Portfolio website of Dakyung Kang",
   accentColor: "#1d4ed8",
   social: {
-    email: "your-email@example.com",
-    linkedin: "https://linkedin.com/in/yourprofile",
+    email: "dakkang03@gmail.com",
+    linkedin: "https://www.linkedin.com/in/dakyung-kang/",
     twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    github: "https://github.com/dakkang03",
   },
   aboutMe:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
   skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "CMOS biosensor",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
+        "Development of an Early Detection System for Membranous Nephropathy Using a CMOS Impedance Sensor",
       link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      skills: ["MATLAB", "CMOS", "AutoCAD", "Immunoassay"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "ASIC DES Processor",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
+        "Designed and implemented a complete 64-bit Data Encryption Standard (DES) hardware cipher in Verilog",
       link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      skills: ["RTL", "Cadence Genus/Innovus", "DRC/LVS", "CTS"],
     },
     {
-      name: "ExtensionKit",
+      name: "High Speed Data Acquisition Controller",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
+        "This project implements a configurable 16-channel data acquisition controller designed for high-speed sampling applications",
       link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      skills: ["RTL", "Python"],
+    },
+    {
+      name: "High Speed Data Acquisition Controller",
+      description:
+        "This project implements a configurable 16-channel data acquisition controller designed for high-speed sampling applications",
+      link: "https://extensionkit.io/?ref=devportfolio",
+      skills: ["RTL", "Python"],
+    },
+    {
+      name: "High Speed Data Acquisition Controller",
+      description:
+        "This project implements a configurable 16-channel data acquisition controller designed for high-speed sampling applications",
+      link: "https://extensionkit.io/?ref=devportfolio",
+      skills: ["RTL", "Python"],
     },
   ],
   experience: [

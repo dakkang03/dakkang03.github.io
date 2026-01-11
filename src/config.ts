@@ -6,7 +6,6 @@ export const siteConfig = {
   social: {
     email: "dakkang03@gmail.com",
     linkedin: "https://www.linkedin.com/in/dakyung-kang/",
-    twitter: "https://x.com/rfitzio",
     github: "https://github.com/dakkang03",
   },
   aboutMe:

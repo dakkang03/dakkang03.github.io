@@ -9,4 +9,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  content: {
+    collections: ["projects"],
+  },
 });

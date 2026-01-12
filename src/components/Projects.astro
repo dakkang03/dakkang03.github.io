@@ -106,6 +106,27 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                           </a>
                         </div>
                       )}
+
+                      {project.doclink && (
+                        <div class="pt-2">
+                          <a
+                            href={project.doclink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onclick="event.stopPropagation();"
+                            class="inline-flex items-center gap-0 px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-900 text-white rounded-md sm:rounded-lg hover:bg-gray-800 transition-all duration-300 text-xs sm:text-sm font-medium"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M9 12h6m-6 4h6m2 4H7a2 2 0 01-2-2V6a2 2 0 012-2h5l5 5v11a2 2 0 01-2 2z"/>
+                            </svg>
+                            Document
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </button>
                 </div>
@@ -175,13 +196,29 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                 GitHub
               </a>
             </div>
+              <a
+                id="modal-document-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-gray-900 text-white rounded-md sm:rounded-lg hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base font-medium"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                <path d="M9 12h6m-6 4h6m2 4H7a2 2 0 01-2-2V6a2 2 0 012-2h5l5 5v11a2 2 0 01-2 2z"/>
+                </svg>
+                Document
+              </a>
           </div>
         </div>
       </div>
 
       <!-- Hidden markdown content -->
       {siteConfig.projects.map((project, index) => {
-        // slug 생성: 프로젝트 이름을 kebab-case로 변환
+        // slug gen
         const slug = project.name.toLowerCase().replace(/\s+/g, '-');
         const markdown = markdownContent[slug];
         
@@ -208,6 +245,7 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
   const modalSkills = document.getElementById('modal-skills');
   const modalContent = document.getElementById('modal-content');
   const modalGithubLink = document.getElementById('modal-github-link');
+   const modalDocumentLink = document.getElementById('modal-document-link');
 
   projectCards.forEach((card) => {
     card.addEventListener('click', () => {
@@ -244,6 +282,13 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
         modalGithubLink.style.display = 'inline-flex';
       } else {
         modalGithubLink.style.display = 'none';
+      }
+
+      if (project.doclink) {
+        modalDocumentLink.href = project.doclink;
+        modalDocumentLink.style.display = 'inline-flex';
+      } else {
+        modalDocumentLink.style.display = 'none';
       }
 
       // Show modal

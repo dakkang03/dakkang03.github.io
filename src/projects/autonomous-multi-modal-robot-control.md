@@ -13,6 +13,8 @@ title: Autonomous Multi-Modal Robot Control
 
 **Content:** Line tracking, wall following, color recognition with 6-channel IR sensor, ultrasonic sensor, encoder, RGB sensor fusion
 
+<img src="./public/images/multimodal-race.png" height="500px" title="des-fullchip"/>
+
 ## Project Overview
 
 **Background:** Autonomous driving robots need to stably follow given paths and drive quickly and accurately in straight/curved sections, maintain constant distance from walls and complete circular driving. Complex tasks required including detecting color cards and moving to target locations
@@ -67,7 +69,7 @@ Each module (line tracking, wall following, color recognition) operates individu
 ### Achievements
 Simultaneously achieved 20% speed improvement in straight sections and 90%+ success rate in curved sections for line tracking. Eliminated wall following vibration and completed circular driving. Achieved 100% success rate for color recognition and maintained angle error within ±5°. Built two fully automatic sequences based on CNN gesture
 
-### Lessons Learned
+### What I Learned
 - Sensor calibration and data preprocessing (normalization, weighting) are key to environmental change resilience
 - Range-based rule control is more practical and easier to debug than complex PID tuning
 - Small optimizations (duty cap, kick motor, encoder logging) accumulate to significant performance improvements

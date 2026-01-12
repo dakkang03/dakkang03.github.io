@@ -13,6 +13,8 @@ title: ASIC DES Processor
 
 **Content:** ASIC design manufacturable with TSMC 180nm process (complete RTL-to-GDSII flow)
 
+<img src="./public/images/des-fullchip.png" width="300px" height="300px" title="des-fullchip"/>
+
 ## Project Overview
 
 **Background:** Hardware encryption is essential for IoT devices and communication systems, and the DES algorithm is optimal educational material for learning block cipher design principles and mastering the complete ASIC design flow
@@ -66,7 +68,7 @@ Critical errors occurred in SPI interface during Cadence Genus synthesis stage a
 ### Achievements
 Independently completed RTL-to-GDSII complete flow to finish manufacturable chip design. Systematically analyzed and resolved post-synthesis errors (tristate, multiple drivers) to achieve 0 synthesis warnings. Eliminated 803 timing violations through Clock Tree Synthesis and completed manufacturing preparation
 
-### Lessons Learned
+### What I Learned
 - RTL simulation pass does not guarantee synthesis success, so adherence to ASIC design best practices is essential
 - Understanding of standard cell library limitations (tristate not supported) and importance of synchronous design
 - Clock Tree Synthesis is most important in timing closure, and H-tree minimizes skew

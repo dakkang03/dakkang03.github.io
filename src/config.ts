@@ -16,6 +16,7 @@ export const siteConfig = {
       name: "CMOS biosensor",
       description:
         "Development of an Early Detection System for Membranous Nephropathy Using a CMOS Impedance Sensor",
+      doclink:"https://zenodo.org/records/18136668",
       skills: ["MATLAB", "CMOS", "AutoCAD", "Immunoassay"],
     },
     {

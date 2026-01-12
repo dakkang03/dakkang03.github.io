@@ -64,7 +64,7 @@ Initial system-level testbench achieved only 28% coverage due to channel_ready s
 ### Achievements
 Overcame initial 28% coverage limitation to achieve 74%+ with independent testbenches. Systematically verified complex multi-channel arbitration scenarios (simultaneous urgent requests, priority conflicts, weight accumulation) to eliminate data loss possibilities. Resolved hierarchical FIFO timing issues through single FIFO redesign
 
-### Lessons Learned
+### What I Learned
 - Coverage analysis is essential for root cause identification, and independent testbenches are the solution when signal dependencies constrain testing
 - For complex systems, 2-tier strategy of standalone tests (edge case focus) and integration tests (end-to-end verification) is effective
 - Simplicity of single module is more practical for implementation and verification than intuitiveness of hierarchical design

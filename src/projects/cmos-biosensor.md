@@ -13,6 +13,8 @@ title: CMOS Biosensor
 
 **Content:** Development of low-concentration antigen detection system using 128×128 electrode array CMOS impedance sensor
 
+<img src="./public/images/cmos.png" width="300px" height="300px" title="cmos"/>
+<img src="./public/images/Entire_chip.png" width="300px" height="300px" title="entire-chip"/>
 ## Project Overview
 
 **Background:** Existing bio impedance sensors measure bulk signals, resulting in low sensitivity and difficulty detecting low-concentration biomarkers
@@ -64,7 +66,7 @@ Need to establish a system that measures immunoassay reactions on electrode surf
 ### Achievements
 Secured signal stability for subsequent immunoassay experiments by selecting optimal PBS concentration (0.01mM). Discovered that Group 4 is more sensitive at low concentration and Group 3 at high concentration, presented optimal measurement electrode selection criteria by concentration range. Secured protocol stability and reduced experimental failure risk through stepwise validation before electrode application
 
-### Lessons Learned
+### What I Learned
 - Sensor calibration and optimal solution concentration selection are the foundation of measurement reliability
 - Different sensitivity characteristics by concentration range require electrode selection strategy according to measurement target
 - Stepwise validation (inexpensive substrate → expensive substrate) is effective in reducing experimental risk and cost

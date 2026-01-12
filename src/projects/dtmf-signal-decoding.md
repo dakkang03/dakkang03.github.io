@@ -13,6 +13,8 @@ title: DTMF Signal Decoding
 
 **Content:** 8-frequency band FIR Bandpass filter design and scoring-based tone identification algorithm implementation
 
+<img src="./public/images/spectrogram_DTMF.png" width="300px" height="300px" title="DTMF"/>
+
 ## Project Overview
 
 **Background:** DTMF (Dual-Tone Multi-Frequency) signals represent each digit or symbol as a combination of two different frequency tones in telephone communication systems. Accurate DTMF decoding requires high-performance filter design that precisely separates each frequency component and tone identification algorithm
@@ -67,7 +69,7 @@ Need to verify DTMF signal decoding in ideal noise-free environment, and analyze
 ### Achievements
 Achieved high frequency resolution and out-of-band attenuation characteristics with L=80 filter. Restored entire phone number sequence 407*89132#BADC without errors using scoring-based tone identification algorithm. Clearly confirmed two frequency components in each tone section through spectrogram verification
 
-### Lessons Learned
+### What I Learned
 - Filter length is a tradeoff between frequency resolution and computational complexity, delay time consideration essential in real-time systems
 - Absolute value-based tone detection is simple but very effective in noise-free environments
 - Visualization tools like spectrograms play key role in filter design verification and debugging

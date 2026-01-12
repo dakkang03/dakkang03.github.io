@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Dakyung Kang",
-  title: "Senior Software Engineer",
+  title: "Electrical Engineer",
   description: "Portfolio website of Dakyung Kang",
   accentColor: "#1d4ed8",
   social: {
@@ -9,14 +9,13 @@ export const siteConfig = {
     github: "https://github.com/dakkang03",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
+    "I am a engineer who systematically solves complex technical problems by breaking them down into smaller steps.",
   skills: ["Verilog", "Cadence", "MATLAB", "Python", "AutoCAD"],
   projects: [
     {
       name: "CMOS biosensor",
       description:
         "Development of an Early Detection System for Membranous Nephropathy Using a CMOS Impedance Sensor",
-      link: "https://aidevroundup.com/?ref=devportfolio",
       skills: ["MATLAB", "CMOS", "AutoCAD", "Immunoassay"],
     },
     {
@@ -75,6 +74,13 @@ export const siteConfig = {
       dateRange: "2022 - 2025",
       achievements: [
         "GPA: 3.74/4.0",
+      ],
+    }
+  ],
+  publication: [
+    {
+      titles: [
+        "H. Shin, D. Kang, J. Kim, and N. Kim, “CMOS Impedance Sensor with 128×128 Microelectrode Arrays for Measuring Surface Coverage of Microparticles,” 2025 IEEE SENSORS Conference, Vancouver, Canada, accepted for publication, Oct.2025.",
       ],
     }
   ],

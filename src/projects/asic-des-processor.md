@@ -13,7 +13,7 @@ title: ASIC DES Processor
 
 **Content:** ASIC design manufacturable with TSMC 180nm process (complete RTL-to-GDSII flow)
 
-<img src="/images/des-fullchip.png" width="300px" height="300px" title="des-fullchip"/>
+<img src="/devportfolio/images/des-fullchip.png" width="300px" height="300px" title="des-fullchip"/>
 
 ## Project Overview
 

@@ -1,7 +1,7 @@
 ---
 import { siteConfig } from "../config";
 
-// 마크다운 파일들을 slug로 매핑
+// mapping with slug
 const projectModules = import.meta.glob('../projects/*.md', { eager: true });
 const markdownContent: Record<string, any> = {};
 

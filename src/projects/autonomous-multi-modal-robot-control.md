@@ -13,7 +13,7 @@ title: Autonomous Multi-Modal Robot Control
 
 **Content:** Line tracking, wall following, color recognition with 6-channel IR sensor, ultrasonic sensor, encoder, RGB sensor fusion
 
-<img src="./public/images/multimodal-race.png" height="500px" title="des-fullchip"/>
+<img src="./images/multimodal-race.png" height="500px" title="des-fullchip"/>
 
 ## Project Overview
 

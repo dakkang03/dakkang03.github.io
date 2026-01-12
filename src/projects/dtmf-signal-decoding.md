@@ -13,7 +13,7 @@ title: DTMF Signal Decoding
 
 **Content:** 8-frequency band FIR Bandpass filter design and scoring-based tone identification algorithm implementation
 
-<img src="./public/images/spectrogram_DTMF.png" width="300px" height="300px" title="DTMF"/>
+<img src="./images/spectrogram_DTMF.png" width="300px" height="300px" title="DTMF"/>
 
 ## Project Overview
 

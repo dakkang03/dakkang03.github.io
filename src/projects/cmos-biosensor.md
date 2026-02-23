@@ -16,6 +16,7 @@ title: CMOS Biosensor
 <img src="/images/cmos.png" width="300px" height="300px" title="cmos"/>
 
 <img src="/images/Entire_chip.png" width="300px" height="300px" title="entire-chip"/>
+
 ## Project Overview
 
 **Background:** Existing bio impedance sensors measure bulk signals, resulting in low sensitivity and difficulty detecting low-concentration biomarkers

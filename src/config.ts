@@ -53,6 +53,15 @@ export const siteConfig = {
   ],
   experience: [
     {
+      company: "Honesty & JR Partners",
+      title: "Patent Engineer",
+      dateRange: "Feb 2026 - Present",
+      bullets: [
+        "Analyzed 10+ semiconductor IPs via transistor-level reverse engineering, drafting 8+ technical specifications for Power Inverter and Pixel Compensation circuits",
+        "Directed 2 outgoing international projects and 1 Office Action (OA) response to validate architectural superiority and design feasibility for global R&D",        
+      ],
+    },
+    {
       company: "Biomedical Micro-Nano Systems Lab",
       title: "Lab Assistant",
       dateRange: "Aug 2024 - Dec 2025",

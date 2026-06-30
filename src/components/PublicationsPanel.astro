@@ -1,0 +1,45 @@
+---
+import { siteConfig } from "../config";
+
+const hasPublication = siteConfig.publication && siteConfig.publication.length > 0;
+---
+
+<div>
+  <h2 class="text-3xl sm:text-4xl font-bold" style={{ color: siteConfig.accentColor }}>
+    Publications
+  </h2>
+
+  {
+    hasPublication ? (
+      <div class="divide-y divide-gray-200 mt-6">
+        {siteConfig.publication.map((pub: any) => (
+          <div class="py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div class="space-y-0.5 flex-1">
+              <p class="font-bold text-gray-900">{pub.title}</p>
+              <p class="text-gray-700">{pub.author}</p>
+              <p class="italic text-gray-600">{pub.conference}</p>
+            </div>
+
+            {pub.pdflink && (
+              <a
+                href={pub.pdflink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex flex-col items-center text-gray-700 hover:text-gray-900 transition-colors flex-shrink-0"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" />
+                  <path d="M14 2v6h6" />
+                  <path d="M9 13h6M9 17h6" />
+                </svg>
+                <span class="text-xs mt-1">Paper</span>
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p class="text-gray-400 text-sm mt-6">Publications coming soon.</p>
+    )
+  }
+</div>

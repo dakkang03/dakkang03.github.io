@@ -7,10 +7,11 @@ export const siteConfig = {
     email: "dakkang03@gmail.com",
     linkedin: "https://www.linkedin.com/in/dakyung-kang/",
     github: "https://github.com/dakkang03",
+    //blog:"https://dakkang03.github.io/blog/en/",
+    //resume:"",
   },
   aboutMe:
     "I am a engineer who systematically solves complex technical problems by breaking them down into smaller steps.",
-  skills: ["Verilog", "Cadence", "MATLAB", "Python", "AutoCAD"],
   projects: [
     {
       name: "CMOS biosensor",
@@ -55,7 +56,7 @@ export const siteConfig = {
     {
       company: "Honesty & JR Partners",
       title: "Patent Engineer",
-      dateRange: "Feb 2026 - Present",
+      dateRange: "Feb 2026 - Jun 2026",
       bullets: [
         "Analyzed 10+ semiconductor IPs via transistor-level reverse engineering, drafting 8+ technical specifications for Power Inverter and Pixel Compensation circuits",
         "Directed 2 outgoing international projects and 1 Office Action (OA) response to validate architectural superiority and design feasibility for global R&D",        
@@ -69,33 +70,74 @@ export const siteConfig = {
         "Co-authored 1 peer-reviewed publication on microfluidic bio-impedance sensing",
         "Led experimental design and data analysis for impedance measurement, improving sensitivity at low frequencies",        
       ],
-    },
-    {
-      company: "University of Utah",
-      title: "Teaching Assistant",
-      dateRange: "Feb 2023 - Jun 2025",
-      bullets: [
-        "Served as Grading TA for 3 courses and Lab TA for 6 courses, supporting 20+ students per class",
-        "Helped improve selected students’ performance by over 20% through targeted guidance and lab support",
-      ],
     }
   ],
   education: [
     {
       school: "University of Utah",
-      degree: "Bachelor of Science in Electrical Engineering",
-      dateRange: "2022 - 2025",
-      achievements: [
-        "GPA: 3.74/4.0",
-      ],
-    }
+      degree: "M.S. in Electrical and Computer Engineering",
+      dateRange: "2028",
+    },
+    {
+      school: "University of Utah",
+      degree: "B.S. in Electrical and Computer Engineering",
+      dateRange: "2025",
+    },
   ],
   publication: [
-    {
-      titles: [
-        "H. Shin, D. Kang, J. Kim, and N. Kim, “CMOS Impedance Sensor with 128×128 Microelectrode Arrays for Measuring Surface Coverage of Microparticles,” 2025 IEEE SENSORS Conference, Vancouver, Canada, accepted for publication, Oct.2025.",
-      ],
-      pdflink:"pdfs/cmos-paper.pdf",
-    }
+  {
+    title: "CMOS Impedance Sensor with 128×128 Microelectrode Arrays for Measuring Surface Coverage of Microparticles",
+    author: "H. Shin, D. Kang, J. Kim, and N. Kim",
+    conference: "2025 IEEE SENSORS Conference, Vancouver, Canada, Oct.2025.",
+    pdflink: "pdfs/cmos-paper.pdf",
+  },
   ],
+  teaching: [
+    {
+      title:"TA for ECE 3700: Digital System Design",
+    },
+    {
+      title:"TA for ECE 2100: Fundamentals of Electronic Circuits and Components",
+    },
+    {
+      title:"TA for ECE 1245: Intro to Circuits Design Laboratory",
+    },
+    {
+      title:"TA for CS 1410: Introduction to Object-Oriented Programming",
+    },
+    {
+      title:"TA for MATH 2250: Differential Equations and Linear Algebra",
+    },
+    {
+      title:"TA for MATH 1320: Engineering Calculus 2",
+    },
+    {
+      title:"TA for MATH 1310: Engineering Calculus 1",
+    },
+    {
+      title:"TA for COMP 1010: Programming for All",
+    },
+  ],
+  awards: [
+    {
+      title: "Undergraduate Research Opportunity Program",
+      year: "2025"
+    },
+    {
+      title: "Dean of Student Grant Aid",
+      year: "2024"
+    },
+    {
+      title: "Undergraduate Research Opportunity Grant",
+      year: "2023"
+    },
+    {
+      title: "Dean’s Lists",
+      year: "2023"
+    },
+    {
+      title: "Dean’s Lists",
+      year: "2022"
+    },
+  ]
 };

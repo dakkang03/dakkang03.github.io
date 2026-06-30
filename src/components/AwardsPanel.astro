@@ -1,0 +1,26 @@
+---
+import { siteConfig } from "../config";
+
+const hasAwards = (siteConfig.awards?.length ?? 0) > 0;
+---
+
+<div>
+  <h2 class="text-3xl sm:text-4xl font-bold" style={{ color: siteConfig.accentColor }}>
+    Awards
+  </h2>
+
+  {
+    hasAwards ? (
+      <div class="mt-6 space-y-3">
+        {siteConfig.awards!.map((award) => (
+          <div class="flex items-center justify-between">
+            <span class="font-semibold text-gray-900">{award.title}</span>
+            <span class="italic text-gray-600 text-sm sm:text-base">{award.year}</span>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p class="text-gray-400 text-sm mt-6">Awards coming soon.</p>
+    )
+  }
+</div>

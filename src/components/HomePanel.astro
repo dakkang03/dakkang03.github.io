@@ -1,0 +1,58 @@
+---
+import { siteConfig } from "../config";
+
+const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasSkills = siteConfig.skills && siteConfig.skills.length > 0;
+---
+
+<div class="space-y-12">
+  <section>
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">About Me</h2>
+    <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+      {siteConfig.aboutMe}
+    </p>
+
+    {
+      hasSkills && (
+        <div class="flex flex-wrap gap-2 mt-6">
+          {siteConfig.skills.map((skill) => (
+            <span class="px-3 py-1.5 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">
+              {skill}
+            </span>
+          ))}
+        </div>
+      )
+    }
+  </section>
+
+  <section>
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Education</h2>
+    {
+      hasEducation ? (
+        <div class="space-y-5">
+          {siteConfig.education.map((edu) => (
+            <div>
+              <p class="font-semibold text-gray-900">{edu.school}</p>
+              <p class="text-gray-600">
+                {edu.degree}
+                {edu.dateRange ? ` (${edu.dateRange})` : ""}
+              </p>
+              {edu.achievements && edu.achievements.length > 0 && (
+                <ul class="mt-2 space-y-1">
+                  {edu.achievements.map((achievement) => (
+                    <li class="flex items-start text-sm text-gray-500">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-1.5 mr-2 flex-shrink-0" />
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="text-gray-400 text-sm">Education info coming soon.</p>
+      )
+    }
+  </section>
+</div>

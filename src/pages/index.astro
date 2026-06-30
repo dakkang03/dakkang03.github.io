@@ -1,14 +1,20 @@
 ---
-import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro";
-import About from "../components/About.astro";
-import Projects from "../components/Projects.astro";
-import Experience from "../components/Experience.astro";
-import Education from "../components/Education.astro";
-import Publication from "../components/Publication.astro";
-import Footer from "../components/Footer.astro";
+import Sidebar from "../components/Sidebar.astro";
+import HomePanel from "../components/HomePanel.astro";
+import ProjectsPanel from "../components/ProjectsPanel.astro";
+import ExperiencesPanel from "../components/ExperiencesPanel.astro";
+import PublicationsPanel from "../components/PublicationsPanel.astro";
+import AwardsPanel from "../components/AwardsPanel.astro";
 import { siteConfig } from "../config";
 import "../styles/global.css";
+
+const tabs = [
+  { id: "home", label: "Home" },
+  { id: "projects", label: "Projects" },
+  { id: "experiences", label: "Experiences" },
+  { id: "publications", label: "Publications" },
+  { id: "awards", label: "Awards" },
+];
 ---
 
 <html lang="en">
@@ -26,16 +32,74 @@ import "../styles/global.css";
     />
     <title>{siteConfig.name} - {siteConfig.title}</title>
   </head>
-  <body>
-    <Header />
-    <section>
-      <Hero />
-      <About />
-      <Projects />
-      <Experience />
-      <Education />
-      <Publication />
-    </section>
-    <Footer />
+  <body class="bg-white min-h-screen" style={`--accent-color: ${siteConfig.accentColor}`}>
+    {tabs.map((tab, i) => (
+      <input type="radio" name="tab" id={`tab-${tab.id}`} class="tab-radio" checked={i === 0} />
+    ))}
+
+    <div class="w-full md:flex md:items-stretch">
+      <Sidebar />
+
+      <main class="flex-1 min-w-0 md:ml-72">
+        <nav class="sticky top-0 z-30 border-b border-gray-100 bg-white/50 backdrop-blur-md px-6 sm:px-10 md:px-12 py-5">
+          <ul class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+            {tabs.map((tab) => (
+              <li>
+                <label for={`tab-${tab.id}`} class={`tab-label tab-label-${tab.id} text-sm sm:text-base text-gray-700 font-medium cursor-pointer`}>
+                  {tab.label}
+                </label>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div class="max-w-6xl p-6 sm:p-10 md:p-12">
+          <div id="panel-home" class="tab-panel">
+            <HomePanel />
+          </div>
+          <div id="panel-projects" class="tab-panel">
+            <ProjectsPanel />
+          </div>
+          <div id="panel-experiences" class="tab-panel">
+            <ExperiencesPanel />
+          </div>
+          <div id="panel-publications" class="tab-panel">
+            <PublicationsPanel />
+          </div>
+          <div id="panel-awards" class="tab-panel">
+            <AwardsPanel />
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <style>
+      .tab-radio {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .tab-panel {
+        display: none;
+      }
+
+      body:has(#tab-home:checked) #panel-home,
+      body:has(#tab-projects:checked) #panel-projects,
+      body:has(#tab-experiences:checked) #panel-experiences,
+      body:has(#tab-publications:checked) #panel-publications,
+      body:has(#tab-awards:checked) #panel-awards {
+        display: block;
+      }
+
+      body:has(#tab-home:checked) .tab-label-home,
+      body:has(#tab-projects:checked) .tab-label-projects,
+      body:has(#tab-experiences:checked) .tab-label-experiences,
+      body:has(#tab-publications:checked) .tab-label-publications,
+      body:has(#tab-awards:checked) .tab-label-awards {
+        color: var(--accent-color);
+        font-weight: 700;
+      }
+    </style>
   </body>
 </html>

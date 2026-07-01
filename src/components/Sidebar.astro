@@ -9,8 +9,11 @@ const blogLink = (siteConfig.social as any)?.blog;
 <aside
   class="w-full md:w-72 md:flex-shrink-0 bg-gray-100 flex flex-col items-center text-center gap-4 px-6 py-10 md:py-16 md:fixed md:left-0 md:top-0 md:h-screen md:overflow-y-auto md:z-40"
 >
-  <div class="w-28 h-28 rounded-full bg-white border border-gray-200 flex-shrink-0"></div>
-
+  <img
+    src="/images/profile.jpg"
+    alt="Dakyung Kang"
+    class="w-35 h-35 rounded-full object-cover border border-gray-200 flex-shrink-0"
+  />
   <h1 class="text-lg font-medium text-gray-900">{siteConfig.name}</h1>
 
   <div class="flex items-center gap-4 text-gray-900">
@@ -75,8 +78,6 @@ const blogLink = (siteConfig.social as any)?.blog;
     latestEducation && (
       <p class="text-sm text-gray-700 leading-relaxed">
         {latestEducation.degree}
-        <br />
-        {latestEducation.school}
       </p>
     )
   }

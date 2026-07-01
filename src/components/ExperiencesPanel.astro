@@ -47,7 +47,6 @@ const hasTeaching = (siteConfig.teaching?.length ?? 0) > 0;
           {siteConfig.teaching!.map((t) => (
             <div class="py-4 flex items-center justify-between">
               <span class="text-gray-900 font-medium">{t.title}</span>
-              {t.dateRange && <span class="text-sm text-gray-500">{t.dateRange}</span>}
             </div>
           ))}
         </div>

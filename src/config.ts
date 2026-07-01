@@ -8,33 +8,39 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/dakyung-kang/",
     github: "https://github.com/dakkang03",
     //blog:"https://dakkang03.github.io/blog/en/",
-    //resume:"",
+    resume:"/pdfs/Dakyung_Kang_Resume.pdf",
   },
-  aboutMe:
-    "I am a engineer who systematically solves complex technical problems by breaking them down into smaller steps.",
+  aboutMe:[
+    "I am an incoming M.S. student in ECE at the University of Utah, where I also completed my B.S. Based on the hardware stack from analog circuit analysis to digital RTL design, I am interested in building reliable and silicon-ready digital systems.",
+    "As an undergraduate researcher, I have published in IEEE Sensors about CMOS bio-signal sensor research. I have validated a 128*128 sensor array designed as hexagonal and octagonal, with different electrode gaps for increasing its sensitivity at low concentrations. I have compared the impedance of concentration with each electrode group through heatmaps.",
+    "Before starting the M.S., I worked as a patent engineer and analyzed display circuits from LG Display and inverter circuits from Hyundai Mobis. Reading schematics across MOSFET processes, inverter topologies, and display driving circuits under tight time constraints trained me to extract the functional core and novelty of an unfamiliar circuit quickly. This skill directly informs how I approach RTL design decisions.",
+    "In my VLSI coursework during my B.S., I implemented a DES encryption engine in Verilog and carried it through a full RTL-to-GDSII flow using Cadence Genus and Innovus. I achieved timing closure and clean DRC/LVS sign-off on TSMC 180nm.",
+    "My personal project, the High-Speed Data Acquisition Controller, is an 8-channel biosignal acquisition system designed for real-time anomaly detection. The design features four arbitration modes, a 16-entry FIFO, and an integrated 8×4 MAC array that scores each channel's signal against a learned pattern. Verification includes 17 SystemVerilog Assertions, constrained-random testbenches with 100% functional coverage, and a Python golden model validated against 1,000 random vectors with 0 mismatches.",
+    "I am drawn to RTL design because it sits at the intersection of architectural intent and physical realizability. It is close enough to the circuit to matter, structured enough to reason about rigorously.",
+  ],
   projects: [
     {
       name: "CMOS biosensor",
       description:
         "Development of an Early Detection System for Membranous Nephropathy Using a CMOS Impedance Sensor",
       pdflink:"/pdfs/protocol.pdf",
-      skills: ["MATLAB", "CMOS", "AutoCAD", "Immunoassay"],
+      skills: ["CMOS", "MATLAB", "AutoCAD", "SNR", "Immunoassay"],
     },
     {
-      name: "ASIC DES Processor",
+      name: "DES Processor - VLSI",
       description:
         "Designed and implemented a complete 64-bit Data Encryption Standard (DES) hardware cipher in Verilog",
       link: "https://github.com/seointhenerd/des-project",
       pdflink: "/pdfs/des-paper.pdf",
-      skills: ["RTL", "Cadence Genus/Innovus", "DRC/LVS", "CTS"],
+      skills: ["VLSI", "Verilog", "RTL", "Cadence Genus/Innovus", "DRC/LVS", "CTS"],
     },
     {
       name: "High Speed Data Acquisition Controller",
       description:
-        "This project implements a configurable 16-channel data acquisition controller designed for high-speed sampling applications",
+        "This project implements a configurable 8-channel data acquisition controller designed for high-speed sampling applications",
       link: "https://github.com/dakkang03/High-Speed-Data-Acquisition-Controller",
       pdflink: undefined,
-      skills: ["RTL", "Python"],
+      skills: ["System Verilog", "RTL", "Python", "Mac Array"],
     },
     {
       name: "Autonomous Multi-Modal Robot Control",
@@ -77,11 +83,13 @@ export const siteConfig = {
       school: "University of Utah",
       degree: "M.S. in Electrical and Computer Engineering",
       dateRange: "2028",
+      achievemt:"",
     },
     {
       school: "University of Utah",
       degree: "B.S. in Electrical and Computer Engineering",
       dateRange: "2025",
+      achievemt:"",
     },
   ],
   publication: [

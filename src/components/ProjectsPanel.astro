@@ -1,30 +1,71 @@
 ---
 import { siteConfig } from "../config";
+import { marked } from "marked";
+import fs from "fs";
+import path from "path";
+
+interface Project {
+  name: string;
+  description?: string;
+  mdfile?: string;
+  pdflink?: string;
+  link?: string;
+  bloglink?: string;
+  dateRange?: string;
+  skills?: string[];
+}
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+const projects = (siteConfig.projects ?? []) as Project[];
+
+const projectContents: Record<string, string> = {};
+for (const project of projects) {
+  if (project.mdfile) {
+    const mdPath = path.join(process.cwd(), "src/projects", project.mdfile);
+    try {
+      const raw = fs.readFileSync(mdPath, "utf-8");
+      const body = raw.replace(/^---[\s\S]*?---\n/, "");
+      projectContents[project.mdfile] = await marked(body);
+    } catch {
+      projectContents[project.mdfile] = "<p>Content unavailable.</p>";
+    }
+  }
+}
 ---
 
-<div>
+<div style={`--accent-color: ${siteConfig.accentColor}`}>
   <h2 class="text-3xl sm:text-4xl font-bold" style={{ color: siteConfig.accentColor }}>
     Projects
   </h2>
 
-  {
-    hasProjects ? (
-      <div class="divide-y divide-gray-200 mt-6">
-        {siteConfig.projects.map((project: any) => (
+  {hasProjects ? (
+    <div class="divide-y divide-gray-200 mt-6">
+      {projects.map((project, i) => (
+        <>
           <div class="py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div class="flex-1">
               <h3 class="text-lg font-semibold text-gray-900">{project.name}</h3>
               <p class="text-gray-600 mt-1">{project.description}</p>
               {project.skills && project.skills.length > 0 && (
                 <div class="flex flex-wrap gap-2 mt-3">
-                  {project.skills.map((skill: string) => (
+                  {project.skills.map((skill) => (
                     <span class="px-2.5 py-1 bg-gray-400 text-white rounded-md text-xs font-medium">
                       {skill}
                     </span>
                   ))}
                 </div>
+              )}
+              {project.mdfile && (
+                <button
+                  type="button"
+                  data-modal={`modal-${i}`}
+                  class="modal-trigger mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent-color)] hover:underline"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  Details
+                </button>
               )}
             </div>
 
@@ -34,12 +75,8 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
               )}
               <div class="flex gap-5">
                 {project.pdflink && (
-                  <a
-                    href={project.pdflink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex flex-col items-center text-gray-700 hover:text-gray-900 transition-colors"
-                  >
+                  <a href={project.pdflink} target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col items-center text-gray-700 hover:text-gray-900 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" />
                       <path d="M14 2v6h6" />
@@ -49,12 +86,8 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                   </a>
                 )}
                 {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex flex-col items-center text-gray-700 hover:text-gray-900 transition-colors"
-                  >
+                  <a href={project.link} target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col items-center text-gray-700 hover:text-gray-900 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
                     </svg>
@@ -62,12 +95,8 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                   </a>
                 )}
                 {project.bloglink && (
-                  <a
-                    href={project.bloglink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex flex-col items-center text-gray-700 hover:text-gray-900 transition-colors"
-                  >
+                  <a href={project.bloglink} target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col items-center text-gray-700 hover:text-gray-900 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
                     </svg>
@@ -77,10 +106,134 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
               </div>
             </div>
           </div>
-        ))}
-      </div>
-    ) : (
-      <p class="text-gray-400 text-sm mt-6">Projects coming soon.</p>
-    )
-  }
+
+          {project.mdfile && (
+            <dialog id={`modal-${i}`} class="modal-dialog">
+              <div class="modal-inner">
+                <div class="modal-header">
+                  <h2>{project.name}</h2>
+                  <button type="button" data-close={`modal-${i}`} class="modal-close" aria-label="Close">✕</button>
+                </div>
+                <div class="modal-body" set:html={projectContents[project.mdfile]} />
+              </div>
+            </dialog>
+          )}
+        </>
+      ))}
+    </div>
+  ) : (
+    <p class="text-gray-400 text-sm mt-6">Projects coming soon.</p>
+  )}
 </div>
+
+<style>
+  /* ── 모달 오버레이 ── */
+  .modal-dialog {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-dialog[open] {
+    display: flex;
+  }
+  .modal-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  /* ── 모달 박스 ── */
+  .modal-inner {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 52rem;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: auto;
+  }
+
+  /* ── 헤더 ── */
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+  }
+  .modal-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: #9ca3af;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+  }
+  .modal-close:hover { color: #374151; }
+
+  /* ── 본문 스크롤 영역 ── */
+  .modal-body {
+    padding: 1.75rem 2rem 2rem;
+    overflow-y: auto;
+    flex: 1;
+    line-height: 1.75;
+    color: #374151;
+    font-size: 0.95rem;
+  }
+
+  /* ── md 스타일링 ── */
+  :global(.modal-body h1) { font-size: 1.6rem; font-weight: 700; color: #111827; margin: 2rem 0 0.75rem; }
+  :global(.modal-body h2) { font-size: 1.3rem; font-weight: 700; color: #111827; margin: 2rem 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid #d1d5db; }
+  :global(.modal-body h3) { font-size: 1.05rem; font-weight: 600; color: #1d4ed8; margin: 1.25rem 0 0.4rem; }
+  :global(.modal-body p)  { margin: 0 0 0.9rem; }
+  :global(.modal-body ul) { list-style-type: disc; padding-left: 1.5rem; margin: 0.5rem 0 1rem; }
+  :global(.modal-body ol) { list-style-type: decimal; padding-left: 1.5rem; margin: 0.5rem 0 1rem; }
+  :global(.modal-body li) { margin-bottom: 0.35rem; }
+  :global(.modal-body strong) { font-weight: 600; color: #111827; }
+  :global(.modal-body hr) { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+  :global(.modal-body code) { background: #f3f4f6; padding: 0.1rem 0.35rem; border-radius: 0.25rem; font-size: 0.85em; font-family: monospace; }
+  :global(.modal-body img) { max-width: 100%; border-radius: 0.5rem; margin: 0.75rem 0; }
+  :global(.modal-body a) { color: #2563eb; text-decoration: underline; }
+</style>
+
+<script>
+  document.querySelectorAll(".modal-trigger").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = (btn as HTMLElement).dataset.modal!;
+      (document.getElementById(id) as HTMLDialogElement).showModal();
+    });
+  });
+  document.querySelectorAll(".modal-close").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = (btn as HTMLElement).dataset.close!;
+      (document.getElementById(id) as HTMLDialogElement).close();
+    });
+  });
+  document.querySelectorAll(".modal-dialog").forEach((dialog) => {
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) (dialog as HTMLDialogElement).close();
+    });
+  });
+</script>

@@ -9,72 +9,59 @@ title: High Speed Data Acquisition Controller
 
 **Team Size:** 1
 
-**Duration:** Sep 2025 - Oct 2025
+**Duration:** Sep 2025 – Jul 2026
 
-**Content:** ECG/EEG/EMG real-time processing system with 4 arbitration modes and intelligent buffering system
+**Content:** 8-channel ECG/EEG/EMG real-time biosignal acquisition system with 4 arbitration modes, 16-entry FIFO, integrated MAC array for anomaly detection, and assertion-based functional verification
+
+---
 
 ## Project Overview
 
-**Background:** Biomedical signal acquisition systems need to simultaneously process 16 channels with different urgency levels such as ECG (electrocardiogram), EEG (electroencephalogram), EMG (electromyogram). Efficient bandwidth allocation is key when urgent cardiac monitoring requires immediate processing but routine brain waves can wait
+**Background:** Bedside patient monitors must simultaneously acquire biosignals across multiple modalities — ECG (500 Hz, highest clinical priority), EEG and EMG (250 Hz) — while ensuring that high-priority cardiac data is never delayed by lower-priority channels. Efficient, configurable channel arbitration and a decoupled buffering strategy are essential for meeting real-time constraints.
 
-**Objective:** Design high-speed data acquisition controller with 4 arbitration strategies (Round-Robin, Priority, Weighted, Dynamic), 672-entry FIFO buffering, derivative-based trigger detection, real-time performance monitoring
+**Objective:** Design an 8-channel biosignal acquisition controller in SystemVerilog featuring four arbitration strategies (Round-Robin, Priority, Weighted, Dynamic), a 16-entry FIFO with 2-level watermark, a bidirectional SPI configuration interface, and an integrated 8×4 MAC array for real-time per-channel anomaly scoring. Validate the design with SystemVerilog Assertions, constrained-random testbenches, functional coverage, and a Python golden model.
+
+---
 
 ## Work Performed
 
-### Background
-Initial system-level testbench achieved only 28% coverage due to channel_ready signal constraints, failing to verify complex multi-channel arbitration scenarios
+### Design
 
-### Problems
-- **Arbiter verification shortage:** Connected channel_ready signals prevented independent control, making it impossible to test complex scenarios such as simultaneous urgent requests, priority conflicts, weight accumulation
-- **FIFO hierarchy complexity:** Initial hierarchical FIFO design caused implementation complexity and timing closure issues
-- **Integration test limitations:** System-level tests made edge case verification difficult due to inter-module dependencies
+**Arbitration modes**
 
-### Solutions
-- **Independent testbench development:** Wrote standalone testbenches with direct signal control to verify all arbitration paths including tie-breaking logic, weight accumulation, urgent channel preemption. Improved Arbiter coverage from 28% → 74% (branch 93%, statement 99%)
-- **Single FIFO redesign:** Redesigned as single 672-entry FIFO with multi-level monitoring (L1: <32, L2: 32-160, L3: >160) and 90% backpressure threshold implementation. Achieved 86% FIFO coverage (expression 100%)
-- **2-tier verification strategy:** Verified module-specific edge cases with Standalone tests (74%+ average), end-to-end functionality with System Integration (58%) for mutual complement
+Implemented four configurable arbitration modes, each providing different latency-throughput tradeoffs:
 
-## Process
+- **Round-Robin:** Cycles through enabled channels in order, guaranteeing maximum wait time of N−1 cycles and eliminating starvation
+- **Priority:** Always selects the highest-priority enabled channel; provides lowest latency for critical channels but risks starvation for low-priority channels
+- **Weighted:** ECG channels assigned weight=2, EEG/EMG weight=1, matching the 2:1 clinical sampling rate ratio (500 Hz vs 250 Hz); default mode
+- **Dynamic:** Falls back to Weighted; immediately promotes any channel with `channel_urgent=1` asserted for event-driven preemption
 
-**Action 1:** Designed 4 arbitration modes - Round-Robin (fair sequential selection), Priority (highest priority wins), Weighted (cumulative weight comparison), Dynamic (urgent channel preemption). Each mode provides different latency-throughput tradeoffs
+**FIFO design**
 
-**Action 2:** Identified root cause through coverage analysis and developed independent testbenches. Removed channel_ready constraints and directly stimulated complex scenarios such as tie-breaking, mode switching, priority conflicts. Improved Arbiter coverage from 28% → 74%
+Redesigned from a hierarchical 672-entry structure to a single 16-entry FIFO with a 2-level watermark (`almost_full` at count ≥ 12). Depth 16 covers one full weighted arbitration round (4×ECG + 2×EEG + 2×EMG = 12 minimum slots) plus margin. The simpler structure eliminated timing closure issues while maintaining all required backpressure semantics.
 
-**Action 3:** Redesigned single 672-entry FIFO with multi-level monitoring (L1/L2/L3) and 90% backpressure. Verified all critical datapath scenarios including empty/full transitions, overflow conditions, simultaneous read/write. Achieved 86% FIFO coverage
+**SPI interface**
 
-**Action 4:** Detected rapid signal changes with derivative threshold engine. Dual detection with amplitude threshold + derivative threshold, tracked previous samples per channel, false positive filtering (trigger rate limiting), prevented spurious triggers with saturation arithmetic. Achieved 74% Trigger coverage
+Extended the SPI slave to support bidirectional read/write. Configuration registers (arbitration mode, channel enable, per-channel weights/priorities) are writable via SPI. FIFO contents are readable via SPI for streaming to an external MCU.
 
-### Insights
-- System-level tests show low coverage due to inter-module dependencies, so 2-tier strategy focusing on individual module edge cases with standalone tests is effective
-- When connected signals like channel_ready interfere with independent testing, independent testbenches with direct signal control dramatically improve coverage
-- Hierarchical design is intuitive but increases implementation complexity, so redesigning as single module while maintaining functionality is advantageous for timing and verification
+**MAC array integration**
 
-## Deliverables
+Integrated an 8×4 channel-parallel MAC array (INT12 unsigned × INT8 signed → INT32) directly into the acquisition pipeline via a FIFO write tap. A per-channel 4-sample sliding window buffer accumulates ADC samples; when a channel's window fills, `mac_valid_in` is asserted and all 8 channels are scored simultaneously against pre-loaded anomaly pattern weights. The `mac_alert` output pulses for 1 cycle when any channel's score exceeds `mac_threshold`.
 
-**Content:** Completed 16-channel high-speed biosignal acquisition system. Integrated 4 arbitration modes, 672-entry FIFO, derivative trigger engine, performance monitor, SPI configuration interface
 
-### Key Points
-- Achieved 74%+ standalone module coverage (Arbiter 74%, FIFO 86%, Trigger 74%)
-- Completed verification of all arbitration paths with Arbiter coverage improvement from 28% → 74%
-- Verified all datapath scenarios with 100% FIFO expression coverage
-- Verified both module-specific edge cases and system integration with 2-tier verification strategy (Standalone 74% + Integration 58%)
+## Results
 
-## Growth
+- **17 SVA assertions** (8 FIFO + 9 Arbiter), all passing, zero violations
+- **100% functional coverage** (Questa Sim covergroups) across FIFO occupancy states, simultaneous read/write, all 16 arbitration mode transitions, reset-during-operation, and all-8-channel contention
+- **4 RTL bugs** found and fixed through directed simulation and waveform analysis
+- **MAC array:** 1,000/1,000 test vectors, 0 mismatches vs Python golden model
+- **Zero regression:** existing SPI datapath unaffected by MAC array integration (16/16)
 
-### Achievements
-Overcame initial 28% coverage limitation to achieve 74%+ with independent testbenches. Systematically verified complex multi-channel arbitration scenarios (simultaneous urgent requests, priority conflicts, weight accumulation) to eliminate data loss possibilities. Resolved hierarchical FIFO timing issues through single FIFO redesign
+---
 
-### What I Learned
-- Coverage analysis is essential for root cause identification, and independent testbenches are the solution when signal dependencies constrain testing
-- For complex systems, 2-tier strategy of standalone tests (edge case focus) and integration tests (end-to-end verification) is effective
-- Simplicity of single module is more practical for implementation and verification than intuitiveness of hierarchical design
-- Verification coverage improvement directly prevents critical errors like data loss in actual deployment, not just design quality improvement
+## Insights
 
-## My Capabilities
-
-### Capability Summary
-- **Systematic verification strategy:** Verified module-specific edge cases and system integration with 2-tier verification (Standalone 74% + Integration 58%)
-- **Coverage analysis and improvement:** Improved Arbiter from 28% → 74% through root cause analysis, overcame signal dependency constraints
-- **Complex system design:** Designed and integrated multi-layer structures including 4 arbitration modes, multi-level FIFO, derivative trigger engine
-- **Redesign decisiveness:** Resolved hierarchical FIFO timing issues through single FIFO redesign while maintaining functionality
-- **Practical problem-solving:** Overcame initial verification limitations through independent testbench development to prevent data loss in clinical deployment
+- System-level tests alone produce low coverage due to inter-module dependencies; unit-level testbenches with direct signal control are essential for verifying corner cases such as simultaneous urgent requests, priority conflicts, and weight accumulation
+- RTL bugs that are invisible at the interface level (CDC hazards, FSM byte-alignment errors, pipeline data-pairing mismatches) require waveform-level analysis to isolate; coverage metrics alone cannot substitute for this
+- Keeping the MAC array connection passive (FIFO write tap rather than shared FIFO read port) preserved all existing verification results and kept the integration change minimal and auditable
+- Simplifying a hierarchical FIFO to a single module reduced timing complexity and made coverage analysis tractable without sacrificing functional requirements
